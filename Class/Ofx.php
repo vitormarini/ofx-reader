@@ -35,8 +35,14 @@ class Ofx {
             
             $count++;
             $pos2    = strpos($buffer, '>');
-            $element = substr($buffer, $pos + 1, $pos2 - $pos - 1);                       
-            $sla[]   = ( substr($element, 0, 1) == '/'  ? substr($element, 1) : $element );            
+            $element = substr($buffer, $pos + 1, $pos2 - $pos - 1); 
+            
+            if (substr($element, 0, 1) == '/') {
+                $sla[] = substr($element, 1);
+            } else {
+                $als[] = $element;
+            }
+            
             $buffer  = substr($buffer, $pos2 + 1);
         } 
         
